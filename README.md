@@ -1,11 +1,17 @@
-Dependencies:
-express
-bcryptjs
-jsonwebtoken
-config
-express-validator
-mongoose
+# Contact Keeper
 
-Dev Dependencies:
-nodemon
-concurrently
+> This is the 2nd project of the ["Modern React Front To Back" Udemy course](https://www.udemy.com/course/modern-react-front-to-back/) by [Brad Traversy](https://www.udemy.com/course/modern-react-front-to-back/#instructor-1).
+
+> [Brad Traversy's repository](https://github.com/bradtraversy/github-finder)
+
+## Dependencies:
+### express
+### bcryptjs
+### jsonwebtoken
+### config
+### express-validator
+### mongoose
+
+## Dev Dependencies:
+### nodemon
+### concurrently
