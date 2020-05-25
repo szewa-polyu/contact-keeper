@@ -4,7 +4,7 @@
 
 > [Brad Traversy's repository](https://github.com/bradtraversy/contact-keeper)
 
-## Dependencies:
+## Backend dependencies:
 ### express
 ### bcryptjs
 ### jsonwebtoken
@@ -12,6 +12,6 @@
 ### express-validator
 ### mongoose
 
-## Dev Dependencies:
+## Backend dev dependencies:
 ### nodemon
 ### concurrently
