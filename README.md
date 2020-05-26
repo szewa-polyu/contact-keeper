@@ -45,3 +45,11 @@ npm run client  # React Client Only :3000
 ## Backend dev dependencies:
 ### nodemon
 ### concurrently
+
+
+## Frontend dependencies:
+### react
+### axios
+### react-router-dom
+### uuid
+### react-transition-group
