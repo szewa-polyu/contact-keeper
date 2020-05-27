@@ -13,6 +13,7 @@ const Register = _ => {
         clearErrors();
       }
     },
+    // eslint-disable-next-line
     [error]
   );
 
