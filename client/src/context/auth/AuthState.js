@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
+import setAuthToken from '../../utils/setAuthToken';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import {
@@ -25,8 +26,17 @@ const AuthState = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Load User
-  const loadUser = _ => {
-    console.log('loadUser');
+  const loadUser = async _ => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    try {
+      const res = await axios.get('/api/auth');
+      dispatch({ type: USER_LOADED, payload: res.data });
+    } catch (err) {
+      dispatch({ type: AUTH_ERROR });
+    }
   };
 
   // Register User
@@ -44,6 +54,8 @@ const AuthState = ({ children }) => {
         type: REGISTER_SUCCESS,
         payload: res.data
       });
+
+      loadUser();
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
@@ -53,13 +65,33 @@ const AuthState = ({ children }) => {
   };
 
   // Login User
-  const login = _ => {
-    console.log('login');
+  const login = async formData => {
+    const config = {
+      header: {
+        'Content-Type': 'application.json'
+      }
+    };
+
+    try {
+      const res = await axios.post('/api/auth', formData, config);
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data.msg
+      });
+    }
   };
 
   // Logout
   const logout = _ => {
-    console.log('logout');
+    dispatch({ type: LOGOUT });
   };
 
   // Clear Errors

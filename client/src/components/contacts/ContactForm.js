@@ -32,14 +32,14 @@ const ContactForm = _ => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (current) {
-      updateContact(contact);
+      await updateContact(contact);
     } else {
-      addContact(contact);
-      setContact(defaultState);
+      await addContact(contact);
     }
+    setContact(defaultState);
   };
 
   const clearAll = e => {

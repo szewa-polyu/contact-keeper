@@ -3,7 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 
 const auth = require('../middleware/auth');
-const User = require('../models/User');
+//const User = require('../models/User');
 const Contact = require('../models/Contact');
 
 // @route   GET api/contacts
@@ -11,7 +11,7 @@ const Contact = require('../models/Contact');
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
-    const contacts = await Contact.find({ user: req.user.id }).sort({
+    const contacts = await Contact.find({ user: req.user._id }).sort({
       date: -1
     });
     res.json(contacts);
@@ -43,7 +43,7 @@ router.post(
         email,
         phone,
         type,
-        user: req.user.id
+        user: req.user._id
       });
       const contact = await newContact.save();
       res.json(contact);
@@ -72,7 +72,7 @@ router.put('/:id', auth, async (req, res) => {
     if (!contact) return res.status(404).json({ msg: 'Contact not found' });
 
     // Make sure user owns contact
-    if (contact.user.toString() !== req.user.id) {
+    if (contact.user.toString() !== req.user._id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
@@ -100,7 +100,7 @@ router.delete('/:id', auth, async (req, res) => {
     if (!contact) return res.status(404).json({ msg: 'Contact not found' });
 
     // Make sure user owns contact
-    if (contact.user.toString() !== req.user.id) {
+    if (contact.user.toString() !== req.user._id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 

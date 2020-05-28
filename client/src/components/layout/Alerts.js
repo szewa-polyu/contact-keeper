@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Alerts = _ => {
   const { alerts } = useContext(AlertContext);
 
-  console.log(alerts);
   if (alerts.length === 0) {
     return null;
   }

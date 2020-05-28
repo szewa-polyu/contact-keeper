@@ -4,13 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactContext from '../../context/contacts/contactContext';
 
 const ContactItem = ({ contact }) => {
-  const { current, deleteContact, setCurrent, clearCurrent } = useContext(
-    ContactContext
-  );
-  const { id, name, email, phone, type } = contact;
+  const { deleteContact, setCurrent } = useContext(ContactContext);
+  const { _id, name, email, phone, type } = contact;
 
   const onDelete = _ => {
-    deleteContact(id);
+    deleteContact(_id);
   };
 
   return (
