@@ -17,6 +17,7 @@ import {
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
+  // loading has to be initially true to be used in PrivateRoute
   loading: true,
   user: null,
   error: null
